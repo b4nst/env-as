@@ -1,0 +1,58 @@
+{
+  "name": "env-as",
+  "version": "0.0.1",
+  "description": "Utility to parse env to exact object.",
+  "main": "lib/index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chance": "^1.0.6",
+    "@types/jest": "^24.0.18",
+    "@types/lodash": "^4.14.137",
+    "@types/node": "^12.7.2",
+    "chance": "^1.0.18",
+    "husky": "^3.0.4",
+    "jest": "^24.9.0",
+    "jest-cli": "^24.9.0",
+    "lint-staged": "^9.2.4",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^1.18.2",
+    "prettier-package-json": "^2.1.0",
+    "rexreplace": "^4.1.1",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^24.0.2",
+    "tslint": "^5.19.0",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-microsoft-contrib": "^6.2.0",
+    "typedoc": "^0.15.0",
+    "typescript": "^3.5.3"
+  },
+  "scripts": {
+    "build": "run-s build:*",
+    "build:ts": "tsc",
+    "build:doc": "run-s doc:*",
+    "doc:1-clean": "rimraf docs",
+    "doc:2-build": "typedoc src",
+    "doc:3-sanitize": "rexreplace \"$PWD/\" '' --quiet docs/**/*.html",
+    "clean": "rimraf lib coverage ",
+    "lint": "tslint src/**/*.ts",
+    "prepublishOnly": "run-s clean build",
+    "test": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/b4nst/env-as.git"
+  },
+  "keywords": [
+    "drone",
+    "github",
+    "checks",
+    "report",
+    "test"
+  ],
+  "author": "Bastien Arata",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/b4nst/env-as/issues"
+  },
+  "homepage": "https://github.com/b4nst/env-as#readme"
+}
