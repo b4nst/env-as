@@ -12,11 +12,6 @@ describe('Parsers', () => {
     string: '',
     array: []
   }
-  test('should parse all typemap', () => {
-    expect(Object.keys(parsers)).toEqual(
-      expect.arrayContaining(Object.keys(deftype))
-    )
-  })
 
   const rtype: {
     [K in keyof TypeMap]: [
@@ -57,13 +52,19 @@ describe('Parsers', () => {
     ]
   }
 
+  test('should parse all typemap', () => {
+    expect(Object.keys(parsers)).toEqual(
+      expect.arrayContaining(Object.keys(deftype))
+    )
+  })
+
   Object.keys(deftype).forEach(t =>
     describe(t, () => {
       test.each(rtype[t as keyof TypeMap])(
         '%p should parse to %p when default=%p',
         (raw, expected, def) => {
           const parser = parsers[t as keyof typeof parsers]
-          expect(parser(raw, def as never)).toBe(expected)
+          expect(parser(raw, def as never)).toStrictEqual(expected)
         }
       )
     })
